@@ -44,5 +44,17 @@ public class TemperatureConverterTest {
         // At upper threshold (50) - should be false because method uses > 50
         assertFalse(TemperatureConverter.isExtremeTemperature(50.0));
     }
-}
 
+    @Test
+    public void testKelvinToCelsius_basic() {
+        // Example from prompt
+        assertEquals(26.85, TemperatureConverter.kelvinToCelsius(300.0), 1e-6);
+
+        // Absolute zero
+        assertEquals(-273.15, TemperatureConverter.kelvinToCelsius(0.0), 1e-6);
+
+        // Some other values including fractional Kelvin
+        assertEquals(0.0, TemperatureConverter.kelvinToCelsius(273.15), 1e-6);
+        assertEquals(100.0, TemperatureConverter.kelvinToCelsius(373.15), 1e-6);
+    }
+}
